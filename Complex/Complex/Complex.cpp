@@ -1,83 +1,53 @@
-﻿#include <iostream>
-using namespace std;
-
-class Complex {
-
-public:
-	friend void printer(Complex a);
-	Complex() {
-		re = 0;
-		im = 0;
-	}
-	Complex(double a, double b) {
-		re = a;
-		im = b;
-	}
-	Complex operator-()
-	{
-		return Complex(-re, -im);
-	}
-	Complex& operator--()//--a
-	{
-		re--;
-		return*this;
-	}
-	Complex operator--(int)//a--
-	{
-		Complex res(*this);
-		--(*this);
-		return res;
-	}
-	Complex& operator++()//++a
-	{
-		re++;
-		return*this;
-	}
-	Complex operator++(int)//a++
-	{
-		Complex res(*this);
-		++(*this);
-		return res;
-	}
-	//!
-	Complex operator=(const Complex& other)
-	{
-		re = other.re;
-		im = other.im;
-		return *this;
-	}
-	Complex operator+(const Complex& other)
-	{
-		return Complex(re + other.re, im + other.im);
-	}
-	Complex operator-(const Complex& other)
-	{
-		return Complex(re - other.re, im - other.im);
-	}
-	Complex operator*(const Complex& other)
-	{
-		return Complex(re * other.re - im * other.im, im * other.re + re * other.im);
-	}
-	Complex operator/(const Complex& other)
-	{
-		return Complex((re * other.re + im * other.im) / (pow(other.re, 2) + pow(other.im, 2)), (other.re * im - re * other.im) / (pow(other.re, 2) + pow(other.im, 2)));
-	}
-private:
-    double re, im;
-};
+﻿#include "header.h"
 
 void printer(Complex a) {
-	cout << a.re << " " << a.im << "\n";
+	cout << "(" << a.re << " " << a.im << ")" << "\n";
 }
 
 int main()
 {
-	double re1, re2, im1, im2;
-	cout << "Input Real and Imagine numbers: RE IM\n";
+	int choice = 0;
+	double re1, im1, re2, im2;
+	cout << "Input real and imagine parts: RE1 IM1\n";
 	cin >> re1 >> im1;
+	cout << "Input real and imagine parts: RE2 IM3\n";
+	cin >> re2 >> im2;
 	Complex a(re1, im1);
-	Complex b(2, 30);
-	Complex c = a/b;
-	printer(c);
+	Complex b(re2, im2);
+	cout << "What do you want?\n1)Add\n2)Subtract\n3)Multiply\n4)Divide\n5)Compare by absolute value\n6)Exit\n";
+	while (choice != 6)
+	{
+		cin >> choice;
+		switch (choice) {
+		case 1:
+			printer(a + b);
+			break;
+		case 2:
+			printer(a - b);
+			break;
+		case 3:
+			printer(a * b);
+			break;
+		case 4:
+			printer(a / b);
+			break;
+		case 5:
+			if (a == b)
+			{
+				cout << "Numbers are equal\n";
+			}
+			if (a < b)
+			{
+				cout << "Number1 is less\n";
+			}
+			if (a > b)
+			{
+				cout << "Number2 is less\n";
+			}
+			break;
+		case 6:
+			break;
+		}
+	}
 }
 
