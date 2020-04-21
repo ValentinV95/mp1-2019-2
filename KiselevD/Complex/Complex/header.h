@@ -27,6 +27,10 @@ public:
 	Complex operator-(const double& a);
 	Complex operator*(const double& a);
 	Complex operator/(const double& a);
+	friend Complex operator + (const double& lhs, const Complex& rhs);
+	friend Complex operator - (const double& lhs, const Complex& rhs);
+	friend Complex operator * (const double& lhs, const Complex& rhs);
+	friend Complex operator / (const double& lhs, const Complex& rhs);
 	friend void printer(Complex a);
 	Complex() {
 		re = 0;

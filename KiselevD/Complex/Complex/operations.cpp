@@ -108,3 +108,19 @@ Complex Complex::operator/(const double& a) {
 	return Complex(this->re / a, this->im / a);
 }
 
+Complex operator + (const double& lhs, const Complex& rhs) {
+	return Complex(lhs + rhs.re, rhs.im);
+}
+
+Complex operator - (const double& lhs, const Complex& rhs) {
+	return Complex(lhs - rhs.re, rhs.im);
+}
+
+Complex operator * (const double& lhs, const Complex& rhs) {
+	return Complex(lhs * rhs.re, lhs * rhs.im);
+}
+
+Complex operator / (const double& lhs, const Complex& rhs) {
+	Complex lhsComplex(lhs, 0);
+	return lhsComplex / rhs;
+}
