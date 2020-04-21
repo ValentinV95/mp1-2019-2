@@ -151,15 +151,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FriendDoubleComplex.cpp" />
-    <ClCompile Include="DuoOp.cpp" />
-    <ClCompile Include="ComplexDouble.cpp" />
-    <ClCompile Include="Overload.cpp" />
-    <ClCompile Include="Print.cpp" />
-    <ClCompile Include="UnioOP.cpp" />
+    <ClCompile Include="OverloadMain.cpp" />
+    <ClCompile Include="PrintComplex.cpp" />
+    <ClCompile Include="ComplexOperate.cpp" />
+    <ClCompile Include="PrintVector.cpp" />
+    <ClCompile Include="VectorOperate.cpp" />
+    <ClCompile Include="VectorStatic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Complex.h" />
+    <ClInclude Include="ComplexVector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

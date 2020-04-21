@@ -4,7 +4,7 @@ class Complex
 {
 public:
 	Complex(double _re = 0, double _im = 0) : re(_re), im(_im) {};
-	
+
 	Complex(const Complex& other) : re(other.re), im(other.im) {};
 
 	Complex operator+ ();
@@ -20,7 +20,7 @@ public:
 	Complex operator- (const Complex& rhs);
 	Complex operator* (const Complex& rhs);
 	Complex operator/ (const Complex& rhs);
-										//Complex operator% (const Complex& rhs);
+	//Complex operator% (const Complex& rhs);
 	Complex& operator+= (const Complex& rhs);
 	Complex& operator-= (const Complex& rhs);
 	Complex& operator*= (const Complex& rhs);
@@ -46,16 +46,7 @@ public:
 	friend Complex operator* (const double& a, const Complex& rhs);
 	friend Complex operator/ (const double& a, const Complex& rhs);
 
-
-	
-
-
-
-
-
-
-	void printE();
-	void print();
+	void printC();
 
 private:
 	double re;
