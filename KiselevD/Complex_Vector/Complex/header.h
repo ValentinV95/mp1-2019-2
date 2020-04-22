@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 using namespace std;
+
 class Complex{
 public:
 	Complex operator-();
@@ -32,7 +33,6 @@ public:
 	friend Complex operator * (const double& lhs, const Complex& rhs);
 	friend Complex operator / (const double& lhs, const Complex& rhs);
 	friend void cmp_printer(Complex a);
-	friend class Vector;
 	Complex() {
 		re = 0;
 		im = 0;
@@ -47,8 +47,19 @@ private:
 
 class Vector {
 public:
+	//unary
+	Vector operator-();
+	//binary
 	Vector& operator=(const Vector& other);
 	Vector operator+(const Vector& other);
+	Vector operator-(const Vector& other);
+	friend Complex operator*(const Vector& other1, const Vector& other2);//for scalar product
+	//operations with double
+	Vector operator*(const double& a);//for multiply on double
+	friend Vector operator*(const double& lhs, const Vector& rhs);
+	Vector operator/(const double& a);//for dividing on double
+	//change value operations
+	friend void change_value(Vector& _v, Complex a);
 	Vector() {
 		arr = new Complex[3];
 		memset(arr, 0, sizeof(arr));
@@ -62,6 +73,11 @@ public:
 	~Vector() {
 		delete(arr);
 	};
+
+	int get_size() {
+		return(size);
+	}
+
 	void print() {
 		cout << "( ";
 		for (int i = 0; i < size; i++)
@@ -70,15 +86,11 @@ public:
 		}
 		cout << " )\n";
 	}
-	
-	Complex& operator[](int index) {
-		if (index >= size) {
-			cout << "Incorrect index";
-			exit(0);
-		}
-		return arr[index];
-	}
 private:
 	Complex* arr; //array of comlex
 	int size; //dimension
 };
+
+void cmp_printer(Complex a);
+Complex* set_values(int _dim, Complex _value);
+void change_value(Vector& _v, Complex a);

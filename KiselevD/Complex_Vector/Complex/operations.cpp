@@ -126,6 +126,17 @@ Complex operator / (const double& lhs, const Complex& rhs) {
 }
 
 //vector operations
+Vector Vector::operator-()
+{
+	Complex* tmp = new Complex[this->size];
+	for (int i = 0; i < this->size; i++)
+	{
+		tmp[i] = -arr[i];
+	}
+	return Vector(this->size, tmp);
+	delete tmp;
+}
+
 Vector& Vector::operator=(const Vector& other) {
 	delete(this->arr);
 	this->size = other.size;
@@ -141,16 +152,80 @@ Vector Vector::operator+(const Vector& other)
 {
 	if (other.size == this->size)
 	{
-		Complex* tmp;
-		tmp = new Complex[this->size];
+		Complex* tmp = new Complex[this->size];
 		for (int i = 0; i < this->size; i++)
 		{
 			tmp[i]=other.arr[i] + this->arr[i];
 		}
 		return Vector(other.size, tmp);
+		delete tmp;
 	}
 	{
 		cout << "Dimensions don't match(+)\n";
 		exit(0);
 	}
+}
+
+Vector Vector::operator-(const Vector& other)
+{
+	if (other.size == this->size)
+	{
+		Complex* tmp = new Complex[this->size];
+		for (int i = 0; i < this->size; i++)
+		{
+			tmp[i] = this->arr[i] - other.arr[i];
+		}
+		return Vector(other.size, tmp);
+		delete tmp;
+	}
+	{
+		cout << "Dimensions don't match(-)\n";
+		exit(0);
+	}
+}
+
+Complex operator*(const Vector& other1, const Vector& other2) {
+	if (other1.size == other2.size)
+	{
+		Complex scalar;
+		for (int i = 0; i < other1.size; i++)
+		{
+			scalar = scalar + (other1.arr[i] * other2.arr[i]);
+		}
+		return scalar;
+	}
+	{
+		cout << "Dimensions don't match(*)\n";
+		exit(0);
+	}
+}
+
+Vector Vector::operator*(const double& a) {
+	Complex* tmp = new Complex[this->size];
+	for (int i = 0; i < this->size; i++)
+	{
+		tmp[i] = this->arr[i] * a;
+	}
+	return Vector(this->size, tmp);
+	delete tmp;
+}
+
+Vector operator * (const double& lhs, const Vector& rhs) {
+	Complex* tmp = new Complex[rhs.size];
+	for (int i = 0; i < rhs.size; i++)
+	{
+		tmp[i] = rhs.arr[i] * lhs;
+	}
+	return Vector(rhs.size, tmp);
+	delete tmp;
+}
+
+Vector Vector::operator/(const double& a) {
+	Complex* tmp = new Complex[this->size];
+	for (int i = 0; i < this->size; i++)
+	{
+		tmp[i] = this->arr[i] / a;
+	}
+	return Vector(this->size, tmp);
+	delete tmp;
 }
