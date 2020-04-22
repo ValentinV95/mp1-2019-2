@@ -101,6 +101,7 @@ int main()
 			{
 				cout << "Scalar product is:\n";
 				cmp_printer(v1 * v2);
+				cout << "\n";
 			}
 			else
 			{
