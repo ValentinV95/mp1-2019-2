@@ -32,6 +32,7 @@ public:
 	friend Complex operator * (const double& lhs, const Complex& rhs);
 	friend Complex operator / (const double& lhs, const Complex& rhs);
 	friend void cmp_printer(Complex a);
+	friend class Vector;
 	Complex() {
 		re = 0;
 		im = 0;
@@ -46,38 +47,21 @@ private:
 
 class Vector {
 public:
+	Vector& operator=(const Vector& other);
+	Vector operator+(const Vector& other);
 	Vector() {
 		arr = new Complex[3];
-		Complex _default;
-		for (int i = 0; i < 3; i++)
-		{
-			arr[i] = _default;
-		}
+		memset(arr, 0, sizeof(arr));
 		this->size = 3;
-		this->value = _default;
 	};
-
-	Vector(int _size, Complex _value) {
+	Vector(int _size, Complex *_value) {
 		arr = new Complex[_size];
-		for (int i = 0; i < _size; i++)
-		{
-			arr[i] = _value;
-		}
+		arr = _value;
 		this->size = _size;
-		this->value = _value;
 	};
-
 	~Vector() {
 		delete(arr);
 	};
-
-	/*Complex& operator[](int index) {
-		if (index >= size) {
-			cout << "Incorrect index";
-			exit(0);
-		}
-		return arr[index];
-	}*/
 	void print() {
 		cout << "( ";
 		for (int i = 0; i < size; i++)
@@ -86,10 +70,15 @@ public:
 		}
 		cout << " )\n";
 	}
-	Vector& operator=(const Vector& other);
-	Vector operator+(const Vector& other);
+	
+	Complex& operator[](int index) {
+		if (index >= size) {
+			cout << "Incorrect index";
+			exit(0);
+		}
+		return arr[index];
+	}
 private:
-	Complex* arr; //array
+	Complex* arr; //array of comlex
 	int size; //dimension
-	Complex value;
 };

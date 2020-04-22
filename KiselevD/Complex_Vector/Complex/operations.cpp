@@ -128,30 +128,29 @@ Complex operator / (const double& lhs, const Complex& rhs) {
 //vector operations
 Vector& Vector::operator=(const Vector& other) {
 	delete(this->arr);
-	this->arr = new Complex[other.size];
 	this->size = other.size;
-	this->value = other.value;
-	for (int i = 0; i < this->size; i++)
+	this->arr = new Complex[other.size];
+	for (int i = 0; i < other.size; i++)
 	{
 		this->arr[i] = other.arr[i];
 	}
 	return *this;
 }
 
-
 Vector Vector::operator+(const Vector& other)
 {
 	if (other.size == this->size)
 	{
+		Complex* tmp;
+		tmp = new Complex[this->size];
 		for (int i = 0; i < this->size; i++)
 		{
-			this->arr[i]=other.arr[i] + this->arr[i];
+			tmp[i]=other.arr[i] + this->arr[i];
 		}
-		return *this;
+		return Vector(other.size, tmp);
 	}
 	{
-		cout << "dimensions don't match";
-		Vector _default;
-		return _default;
+		cout << "Dimensions don't match(+)\n";
+		exit(0);
 	}
 }
