@@ -12,7 +12,7 @@ Complex* set_values(int _dim, Complex _value) {
 		values[i] = _value;
 	}
 	return values;
-	delete values;
+	delete[] values;
 }
 
 void change_value(Vector& _v, Complex a){

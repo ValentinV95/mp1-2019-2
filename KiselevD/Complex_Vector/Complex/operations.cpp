@@ -134,7 +134,7 @@ Vector Vector::operator-()
 		tmp[i] = -arr[i];
 	}
 	return Vector(this->size, tmp);
-	delete tmp;
+	delete[] tmp;
 }
 
 Vector& Vector::operator=(const Vector& other) {
@@ -158,7 +158,7 @@ Vector Vector::operator+(const Vector& other)
 			tmp[i]=other.arr[i] + this->arr[i];
 		}
 		return Vector(other.size, tmp);
-		delete tmp;
+		delete[] tmp;
 	}
 	{
 		cout << "Dimensions don't match(+)\n";
@@ -176,7 +176,7 @@ Vector Vector::operator-(const Vector& other)
 			tmp[i] = this->arr[i] - other.arr[i];
 		}
 		return Vector(other.size, tmp);
-		delete tmp;
+		delete[] tmp;
 	}
 	{
 		cout << "Dimensions don't match(-)\n";
@@ -207,7 +207,7 @@ Vector Vector::operator*(const double& a) {
 		tmp[i] = this->arr[i] * a;
 	}
 	return Vector(this->size, tmp);
-	delete tmp;
+	delete[] tmp;
 }
 
 Vector operator * (const double& lhs, const Vector& rhs) {
@@ -217,7 +217,7 @@ Vector operator * (const double& lhs, const Vector& rhs) {
 		tmp[i] = rhs.arr[i] * lhs;
 	}
 	return Vector(rhs.size, tmp);
-	delete tmp;
+	delete[] tmp;
 }
 
 Vector Vector::operator/(const double& a) {
@@ -227,5 +227,5 @@ Vector Vector::operator/(const double& a) {
 		tmp[i] = this->arr[i] / a;
 	}
 	return Vector(this->size, tmp);
-	delete tmp;
+	delete[] tmp;
 }
