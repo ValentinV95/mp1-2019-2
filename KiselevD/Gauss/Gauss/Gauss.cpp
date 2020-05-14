@@ -1,5 +1,6 @@
 ﻿using namespace std;
 #include <iostream>
+#include "abs.h"
 #include "vector.h"
 #include "matrix.h"
 #include "slae.h"
@@ -10,8 +11,13 @@ int main()
     cout << "Input matrix size:" << endl;
     cin >> size;
     SLAE<double>m(size);
+    Vector<double>sol(size);
     m.fill();
+    cout << "Original matrix:" << endl;
     m.s_print();
-    m.swap(0, 2);
+    sol = m.gauss();
+    cout << "Triangular matrix:" << endl;
     m.s_print();
+    cout << "Solution vector:" << endl;
+    sol.v_print();
 }

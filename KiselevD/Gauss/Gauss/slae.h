@@ -38,6 +38,7 @@ public:
 			}
 			cout << "| " << rv[i] << endl;
 		}
+		cout << endl;
 	}
 	void swap(int str1, int str2) {
 		if (str1 < this->size && str2 < this->size)
@@ -60,6 +61,73 @@ public:
 			cout << "Wrong string!";
 			exit(1);
 		}
+	}
+	Vector <T> gauss() {
+		T error = 0.0000001; //погрешность
+		//приведение к треугольному виду
+		for (int j = 0; j < this->size; j++)
+		{
+			int i = 0;
+			int max_abs_index = i + j;
+			T max_abs = abs<T>(this->m_x[i + j][j]);
+			for (i + j + 1; i + j + 1 < this->size; i++);
+			{
+				if (abs<T>(this->m_x[i+j][j]) > max_abs)
+				{
+					max_abs_index = i+j;
+				}
+			}
+			swap(j, max_abs_index);
+			for (int l = j + 1; l < this->size; l++)
+			{
+				T rate = -(this->m_x[l][j] / this->m_x[j][j]);
+				for (int k = j; k < this->size; k++)
+				{
+					this->m_x[l][k] += this->m_x[j][k] * rate;
+				}
+				rv[l] += rv[j] * rate;
+			}
+		}
+		//удаляем погрешность
+		for (int i = 0; i < this->size; i++)
+		{
+			for (int j = 0; j < this->size; j++)
+			{
+				if (abs(this->m_x[i][j]) < error)
+				{
+					this->m_x[i][j] = 0;
+				}
+			}
+			if (abs(rv[i]) < error)
+			{
+				rv[i] = 0;
+			}
+		}
+		//проверяем на отсутсвие решений
+		for (int i = 0; i < this->size; i++)
+		{
+			T sum = 0;
+			for (int j = 0; j < this->size; j++)
+			{
+				sum += this->m_x[i][j];
+			}
+			if ((sum == 0) && (rv[i] != 0))
+			{
+				cout << "No solution" << endl;
+				exit(2);
+			}
+		}
+		//находим решение
+		T* sol = new T[this->size];
+		for (int i = this->size - 1; i >= 0; i--) {
+			T tmp = 0;
+			for (int j = i + 1; j < this->size; j++) {
+				tmp += this->m_x[i][j] * sol[j];
+			}
+			sol[i] = (rv[i] - tmp) / this->m_x[i][i];
+		}
+		//возвращаем решение
+		return Vector<T>(this->size, sol);
 	}
 private:
 	T* rv; //right_values

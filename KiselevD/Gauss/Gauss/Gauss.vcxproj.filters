@@ -29,5 +29,8 @@
     <ClInclude Include="slae.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="abs.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
