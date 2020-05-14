@@ -26,5 +26,8 @@
     <ClInclude Include="matrix.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="slae.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
