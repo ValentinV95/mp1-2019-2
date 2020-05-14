@@ -113,8 +113,13 @@ public:
 			}
 			if ((sum == 0) && (rv[i] != 0))
 			{
-				cout << "No solution" << endl;
+				cout << "No solution: 0 * x = C, C!=0" << endl;
 				exit(2);
+			}
+			if ((sum == 0) && (rv[i] == 0))
+			{
+				cout << "Cant solve: the equation depends on the variable" << endl;
+				exit(3);
 			}
 		}
 		//находим решение
