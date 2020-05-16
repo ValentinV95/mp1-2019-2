@@ -63,8 +63,8 @@ public:
 		}
 	}
 	Vector <T> gauss() {
-		T error = 0.0000001; //погрешность
-		//приведение к треугольному виду
+		T error = 0.0000001; 
+		//making it look triangular
 		for (int j = 0; j < this->size; j++)
 		{
 			int i = 0;
@@ -88,7 +88,7 @@ public:
 				rv[l] += rv[j] * rate;
 			}
 		}
-		//удаляем погрешность
+		//removing the error
 		for (int i = 0; i < this->size; i++)
 		{
 			for (int j = 0; j < this->size; j++)
@@ -103,7 +103,7 @@ public:
 				rv[i] = 0;
 			}
 		}
-		//проверяем на отсутсвие решений
+		//checking for missing solutions
 		for (int i = 0; i < this->size; i++)
 		{
 			T sum = 0;
@@ -122,7 +122,7 @@ public:
 				exit(3);
 			}
 		}
-		//находим решение
+		//find solutions
 		T* sol = new T[this->size];
 		for (int i = this->size - 1; i >= 0; i--) {
 			T tmp = 0;
@@ -131,7 +131,6 @@ public:
 			}
 			sol[i] = (rv[i] - tmp) / this->m_x[i][i];
 		}
-		//возвращаем решение
 		return Vector<T>(this->size, sol);
 	}
 private:
