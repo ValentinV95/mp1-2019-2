@@ -80,12 +80,20 @@ public:
 			swap(j, max_abs_index);
 			for (int l = j + 1; l < this->size; l++)
 			{
-				T rate = -(this->m_x[l][j] / this->m_x[j][j]);
-				for (int k = j; k < this->size; k++)
+				if (this->m_x[j][j] != 0)
 				{
-					this->m_x[l][k] += this->m_x[j][k] * rate;
+					T rate = -(this->m_x[l][j] / this->m_x[j][j]);
+					for (int k = j; k < this->size; k++)
+					{
+						this->m_x[l][k] += this->m_x[j][k] * rate;
+					}
+					rv[l] += rv[j] * rate;
 				}
-				rv[l] += rv[j] * rate;
+				else
+				{
+					cout << "Division by 0 when searching rate!" << endl;
+					exit(3);
+				}
 			}
 		}
 		//removing the error
@@ -109,7 +117,7 @@ public:
 			T sum = 0;
 			for (int j = 0; j < this->size; j++)
 			{
-				sum += this->m_x[i][j];
+				sum += abs<T>(this->m_x[i][j]);
 			}
 			if ((sum == 0) && (rv[i] != 0))
 			{
