@@ -8,62 +8,26 @@ template <class T>
 class Matrix
 {
 public:
-	Matrix(int _nsize) : nsize(_nsize), m(_nsize)
+	Matrix(int _nsize) : nsize(_nsize), m(_nsize), tmp_m(_nsize)
 	{
 		for (int i = 0; i < _nsize; i++)
 		{
 			T* a = new T[_nsize];
 			create_random_massive(_nsize, a);
 			Vector<T> tmp(nsize, a);
-			m[i] = tmp;
+			this->m[i] = tmp;
+			this->tmp_m[i] = tmp;
 			delete[]a;
 		}
-	}
-
-	Matrix(int _nsize, int value) : nsize(_nsize), m(_nsize)
-	{
-		for (int i = 0; i < _nsize; i++)
-		{
-			T* a = new T[_nsize];
-			create_null_massive(_nsize, a);
-			Vector<T> tmp(nsize, a);
-			m[i] = tmp;
-			delete[]a;
-		}
-	}
-
-	Matrix(const Matrix& _copy);
-
-	Vector<T> get_vector(int index)
-	{
-		return m[index];
 	}
 
 	void print_Matrix();
 
-	Matrix<T>& operator= (const Matrix<T>& rhs)
-	{
-		for (int i = 0; i < this->nsize; i++)
-		{
-			this->m[i] = rhs.m[i];
-		}
-	}
-
-
+protected:
 	Vector<Vector<T>> m;
+	Vector<Vector<T>> tmp_m;
 	int nsize;	
 };
-
-template <class T>
-Matrix<T>::Matrix(const Matrix& _copy)
-{
-	this->_size = _copy.nsize;
-	
-	for (int i = 0; i < nsize; i++)
-	{
-		this->v = _copy.v;
-	}
-}
 
 template <class T>
 void Matrix<T>::print_Matrix()

@@ -15,22 +15,12 @@ int main()
 	std::cin >> size;
 	std::cout << "Vector`s size:" << size << std::endl;
 
-	double* a0 = new double[size];
-	double* a1 = new double[size];
-	create_random_massive(size, a1);
-	create_null_massive(size, a0);
-
-	Vector<double> v0(size, a0);
-	Vector<double> v1(size, a1);
-	
-	Matrix<double> m1(size);
-
 	Linear_equation_system<double> l1(size);
 	l1.print_linear_equation_system();
 	l1.method_Gauss();
 	std::cout << std::endl;
 	l1.print_linear_equation_system();
-	
-	delete[]a1;
-	delete[]a0;
+
+	l1.Check();
+
 }

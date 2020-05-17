@@ -9,7 +9,7 @@
 
 template <class T>
 class Linear_equation_system : public Matrix<T>
-{
+{	
 public:
 	Linear_equation_system(int _nsize) : Matrix<T>(_nsize), v(_nsize)
 	{
@@ -18,12 +18,12 @@ public:
 		create_random_massive(_nsize, a);
 		Vector<T> _v(_nsize, a);
 		v = _v;
+		tmp_v = _v;
 		delete[]a;
 	}
 
 	void method_Gauss()
 	{
-
 		for (int i = 0; i < this->nsize; i++)
 		{
 			T max = this->m[i][i];
@@ -73,8 +73,22 @@ public:
 				this->m[k][z] = this->m[k][z] - this->m[k][z] * this->m[z][z];
 			}
 		}
-			
-	
+	}
+
+	void Check()
+	{
+		Vector<T> check_v(this->nsize);
+
+		for (int i = 0 ; i < this->nsize; i++)
+		{
+			for (int j = 0; j < this->nsize; j++)
+			{
+				check_v[i] += this->tmp_m[i][j] * this->v[j];
+			}
+		}
+
+		std::cout << std::endl;
+		check_v.print_coord();
 	}
 
 	void print_linear_equation_system()
@@ -91,4 +105,5 @@ public:
 	}
 private:
 	Vector<T> v;
+	Vector<T> tmp_v;
 };

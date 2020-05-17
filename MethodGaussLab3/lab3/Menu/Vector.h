@@ -37,12 +37,12 @@ public:
 	Vector<T> operator* (const Vector<T>& rhs);
 	Vector<T> operator/ (const Vector<T>& rhs);
 
-	T& operator[](int index)
+	T& operator[](int index);
+	
+	~Vector()
 	{
-		return a[(index)];
+		delete[]a;
 	}
-
-	~Vector();
 	
 private:
 	int nsize;
@@ -60,18 +60,6 @@ Vector<T>::Vector(int _nsize, T* _a)
 	for (int i = 0; i < _nsize; i++)
 	{
 		this->a[i] = _a[i];
-	}
-}
-
-template <class T>
-Vector<T>::Vector(const Vector<T>& _copy)
-{
-	this->nsize = _copy.nsize;
-
-	this->a = new T[nsize];
-	for (int i = 0; i < nsize; i++)
-	{
-		this->a[i] = _copy.a[i];
 	}
 }
 
@@ -167,12 +155,7 @@ Vector<T> Vector<T>::operator/ (const Vector<T>& rhs)
 }
 
 template <class T>
-Vector<T>::~Vector()
+T& Vector<T>::operator[](int index)
 {
-	delete []a;
+	return a[(index)];
 }
-
-
-
-
-
