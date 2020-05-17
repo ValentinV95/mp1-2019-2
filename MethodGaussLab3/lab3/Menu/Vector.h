@@ -22,11 +22,7 @@ public:
 
 	Vector(int _nsize, T* _a);
 
-	Vector(const Vector& _copy);
-
 	int getsize();
-
-	void create_massive_vector();
 
 	void print_coord();						
 
