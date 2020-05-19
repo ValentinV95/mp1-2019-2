@@ -150,7 +150,9 @@
     <ClCompile Include="Gauss.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="abs.h" />
     <ClInclude Include="matrix.h" />
+    <ClInclude Include="slae.h" />
     <ClInclude Include="vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
