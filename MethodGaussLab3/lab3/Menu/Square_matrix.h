@@ -5,7 +5,7 @@
 
 
 template <class T>
-class Matrix
+class Matrix : public Vector<Vector<T>>
 {
 public:
 	Matrix(int _nsize) : nsize(_nsize), m(_nsize), tmp_m(_nsize)

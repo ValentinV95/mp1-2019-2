@@ -40,10 +40,8 @@ public:
 		delete[]a;
 	}
 	
-private:
+protected:
 	int nsize;
-
-private:
 	T *a;
 };
 
