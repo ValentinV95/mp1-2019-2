@@ -1,0 +1,14 @@
+﻿  GaussLab.cpp
+C:\Users\Дмитрий\source\repos\GaussLab\GaussLab\Linear_system.h(83,15): warning C4552: "+": результат выражения не используется
+C:\Users\Дмитрий\source\repos\GaussLab\GaussLab\Linear_system.h(77): message : во время компиляции функции-члена класс шаблон "My_vector<T> Linear_system<T>::gauss_method(void)"
+C:\Users\Дмитрий\source\repos\GaussLab\GaussLab\Linear_system.h(77): message :         with
+C:\Users\Дмитрий\source\repos\GaussLab\GaussLab\Linear_system.h(77): message :         [
+C:\Users\Дмитрий\source\repos\GaussLab\GaussLab\Linear_system.h(77): message :             T=double
+C:\Users\Дмитрий\source\repos\GaussLab\GaussLab\Linear_system.h(77): message :         ]
+C:\Users\Дмитрий\source\repos\GaussLab\GaussLab\GaussLab.cpp(26): message : выполняется компиляция ссылки на экземпляр шаблон функции "My_vector<T> Linear_system<T>::gauss_method(void)"
+C:\Users\Дмитрий\source\repos\GaussLab\GaussLab\GaussLab.cpp(26): message :         with
+C:\Users\Дмитрий\source\repos\GaussLab\GaussLab\GaussLab.cpp(26): message :         [
+C:\Users\Дмитрий\source\repos\GaussLab\GaussLab\GaussLab.cpp(26): message :             T=double
+C:\Users\Дмитрий\source\repos\GaussLab\GaussLab\GaussLab.cpp(26): message :         ]
+C:\Users\Дмитрий\source\repos\GaussLab\GaussLab\GaussLab.cpp(19): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "Linear_system<double>"
+  GaussLab.vcxproj -> C:\Users\Дмитрий\source\repos\GaussLab\Debug\GaussLab.exe
