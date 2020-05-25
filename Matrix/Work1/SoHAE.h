@@ -25,6 +25,14 @@ public:
 		cout << "The initial system: " << endl;
 		print(rv);
 
+		//saving the original matrix
+		SoHAE<double> oM(this->size);
+		for (int i = 0; i < this->size; i++) {
+			for (int j = 0; j < this->size; j++) {
+				oM[j][i] = this->m_x[j][i];
+			}
+		}
+
 		for (int i = 0; i < this->size; i++) {
 			int count = 0;
 			for (int j = 0; j < this->size; j++) {
@@ -88,6 +96,13 @@ public:
 				tmp += this->m_x[i][j] * sol[j];
 			}
 			sol[i] = (rv[i] - tmp) / this->m_x[i][i];
+		}
+
+		//returns the values of the original matrix
+		for (int i = 0; i < this->size; i++) {
+			for (int j = 0; j < this->size; j++) {
+				this->m_x[j][i] = oM[j][i];
+			}
 		}
 
 		cout << "The solution of the system: " << endl;

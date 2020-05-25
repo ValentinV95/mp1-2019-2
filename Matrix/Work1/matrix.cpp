@@ -20,11 +20,16 @@ int main() {
 	cout << "Input matrix size:" << endl;
 	cin >> size;
 	double* arr = new double[size];
-	inputRV(arr, size);
 
+	inputRV(arr, size);
 	SoHAE<double> k(size);
 	k.fill();
 	k.gauss(arr);
+
+
+	double* arr2 = new double[size];
+	inputRV(arr2, size);
+	k.gauss(arr2);
 }
 
 
