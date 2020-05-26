@@ -154,7 +154,6 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Func_massive_for_creating_vector.h" />
     <ClInclude Include="linear_equation_system.h" />
     <ClInclude Include="Square_matrix.h" />
     <ClInclude Include="Vector.h" />
