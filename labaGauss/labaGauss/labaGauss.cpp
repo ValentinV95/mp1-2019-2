@@ -2,7 +2,7 @@
 //
 
 #define INPUT = true
-#undef INPUT
+//#undef INPUT
 
 #include "dop.h"
 #include "slau.h"
@@ -10,6 +10,7 @@
 
 int main()
 {
+	int f;
 	int sizeX;
 	int sizeY;
 #if defined(INPUT)
@@ -84,6 +85,25 @@ int main()
 	std::cout << "-----" << std::endl;
 	for (int i = 0; i < vals.size; i++) std::cout << "[" << i << "] " << vals[i];
 	std::cout << std::endl;
+	std::cout << "do you want to solve this matrix with a different right column? " << std::endl << "1 - yes" << std::endl << "2 - no" << std::endl;
+    std::cin>> f;
+	if (f == 2)
+		std::cout << "ok";
+	else
+	{
+		vector<double> ans1 = vector<double>(sizeY);
+		for (int y = 0; y < sizeY; y++)
+		{
+			std::cout << "[" << y << "] ";
+			std::cin >> ans1[y];
+		}
+		vector<double> vals1 = _matrix.gauss(ans1);
+
+		std::cout << "-----" << std::endl;
+		for (int i = 0; i < vals1.size; i++) std::cout << "[" << i << "] " << vals1[i];
+		std::cout << std::endl;
+	}
+
 }
 
 
