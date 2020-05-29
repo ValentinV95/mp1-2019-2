@@ -24,6 +24,7 @@ int main()
 #endif
 
 	slau _matrix = slau(sizeX, sizeY);
+	slau _matrixx = slau(sizeX, sizeY);
 
 #if defined(INPUT)
 	for (int y = 0; y < sizeY; y++)
@@ -32,6 +33,7 @@ int main()
 		{
 			std::cout << "[" << x << "," << y << "] ";
 			std::cin >> _matrix[matrix_index(x, y)];
+			_matrixx[matrix_index(x, y)]= _matrix[matrix_index(x, y)];
 		}
 	}
 #else
@@ -85,19 +87,26 @@ int main()
 	std::cout << "-----" << std::endl;
 	for (int i = 0; i < vals.size; i++) std::cout << "[" << i << "] " << vals[i];
 	std::cout << std::endl;
+
 	std::cout << "do you want to solve this matrix with a different right column? " << std::endl << "1 - yes" << std::endl << "2 - no" << std::endl;
     std::cin>> f;
 	if (f == 2)
 		std::cout << "ok";
 	else
 	{
+		_matrix.print();
+		std::cout << std::endl;
 		vector<double> ans1 = vector<double>(sizeY);
 		for (int y = 0; y < sizeY; y++)
 		{
 			std::cout << "[" << y << "] ";
 			std::cin >> ans1[y];
 		}
-		vector<double> vals1 = _matrix.gauss(ans1);
+		
+		std::cout << "-----" << std::endl;
+		
+		std::cout << std::endl;
+		vector<double> vals1 = _matrixx.gauss(ans1);
 
 		std::cout << "-----" << std::endl;
 		for (int i = 0; i < vals1.size; i++) std::cout << "[" << i << "] " << vals1[i];
