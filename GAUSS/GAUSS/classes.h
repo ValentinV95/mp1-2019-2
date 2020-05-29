@@ -12,12 +12,12 @@ public:
 	Vector()
 	{
 		isize = 1;
-        pVector = new T[isize];
+		pVector = new T[isize];
 		for (int i = 0; i < isize; i++)
 		{
-            pVector[i] = 0;
+			pVector[i] = 0;
 		}
-	}	
+	}
 	Vector(int _size, T val = T())
 	{
 		isize = _size;
@@ -66,7 +66,7 @@ public:
 	void printV() const
 	{
 		for (int i = 0; i < isize; i++)
-				cout << pVector[i] << "\n";
+			cout << pVector[i] << "\n";
 	}
 };
 template <typename T>
@@ -164,13 +164,19 @@ public:
 		}
 		else
 		{
-			std::cout << "ERROR";
+			cout << "ERROR";
 			exit(0);
 		}
 	}
 	Vector <T> gauss()
 	{
 		printM();
+		slau<double> cop(this->isize);
+		for (int i = 0; i < this->isize; i++) {
+			for (int j = 0; j < this->isize; j++) {
+				cop[j][i] = this->pVector[j][i];
+			}
+		}
 		for (int i = 0; i < this->isize; i++)
 		{
 			int k = 0;
@@ -234,6 +240,11 @@ public:
 				tmp += this->pVector[i][j] * sl[j];
 			}
 			sl[i] = (p[i] - tmp) / this->pVector[i][i];
+		}
+		for (int i = 0; i < this->isize; i++) {
+			for (int j = 0; j < this->isize; j++) {
+				this->pVector[j][i] = cop[j][i];
+			}
 		}
 		cout << "Resultat: " << endl;
 		Vector<T>(this->isize, sl).printV();
