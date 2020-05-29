@@ -33,7 +33,7 @@ int main()
 		{
 			std::cout << "[" << x << "," << y << "] ";
 			std::cin >> _matrix[matrix_index(x, y)];
-			_matrixx[matrix_index(x, y)]= _matrix[matrix_index(x, y)];
+			_matrixx[matrix_index(x, y)] = _matrix[matrix_index(x, y)];
 		}
 	}
 #else
@@ -79,38 +79,51 @@ int main()
 	ans[1] = 6;
 	ans[2] = -10;
 	ans[3] = 3;
-	
+
 #endif
 
-	vector<double> vals = _matrix.gauss(ans);
+	vector<double> vals = _matrixx.gauss(ans);
 
 	std::cout << "-----" << std::endl;
 	for (int i = 0; i < vals.size; i++) std::cout << "[" << i << "] " << vals[i];
 	std::cout << std::endl;
+	int k = 1;
 
-	std::cout << "do you want to solve this matrix with a different right column? " << std::endl << "1 - yes" << std::endl << "2 - no" << std::endl;
-    std::cin>> f;
-	if (f == 2)
-		std::cout << "ok";
-	else
+	while (k != 0)
 	{
-		_matrix.print();
-		std::cout << std::endl;
-		vector<double> ans1 = vector<double>(sizeY);
-		for (int y = 0; y < sizeY; y++)
+		std::cout << "do you want to solve this matrix with a different right column? " << std::endl << "1 - yes" << std::endl << "2 - no" << std::endl;
+		std::cin >> f;
+		if (f == 2)
 		{
-			std::cout << "[" << y << "] ";
-			std::cin >> ans1[y];
+			std::cout << "ok";
+			k = 0;
 		}
-		
-		std::cout << "-----" << std::endl;
-		
-		std::cout << std::endl;
-		vector<double> vals1 = _matrixx.gauss(ans1);
 
-		std::cout << "-----" << std::endl;
-		for (int i = 0; i < vals1.size; i++) std::cout << "[" << i << "] " << vals1[i];
-		std::cout << std::endl;
+		else
+		{
+			slau _matrixrab = slau(sizeX, sizeY);
+			for (int y = 0; y < sizeY; y++)
+				for (int x = 0; x < sizeX; x++)
+					_matrixrab[matrix_index(x, y)] = _matrix[matrix_index(x, y)];
+
+			_matrixrab.print();
+			std::cout << std::endl;
+			vector<double> ans1 = vector<double>(sizeY);
+			for (int y = 0; y < sizeY; y++)
+			{
+				std::cout << "[" << y << "] ";
+				std::cin >> ans1[y];
+			}
+
+			std::cout << "-----" << std::endl;
+
+			vector<double> vals1 = _matrixrab.gauss(ans1);
+
+			std::cout << "-----" << std::endl;
+			for (int i = 0; i < vals1.size; i++) std::cout << "[" << i << "] " << vals1[i];
+			std::cout << std::endl;
+			k = 1;
+		}
 	}
 
 }
