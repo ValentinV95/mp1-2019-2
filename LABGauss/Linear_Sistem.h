@@ -169,7 +169,7 @@ public:
 			{
 				Check[i] += this->ptrVector[i][j] * ptr[j];
 			}
-			cout << ptr[i] << "\t";
+			cout << ptr[this->SIZE-i-1] << "\t";
 		}
 		delete[]Check;
 	}
