@@ -168,13 +168,16 @@ public:
 			exit(0);
 		}
 	}
-	Vector <T> gauss()
+	void RightP()
 	{
 		for (int i = 0; i < this->isize; i++)
 		{
 			cout << "Vvedite " << i << " pravoe znachenie" << endl;
 			cin >> p[i];
 		}
+	}
+	Vector <T> gauss()
+	{
 		printM();
 		MATRIX<double> cop(this->isize);
 		for (int i = 0; i < this->isize; i++) {
