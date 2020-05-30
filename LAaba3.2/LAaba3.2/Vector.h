@@ -59,12 +59,12 @@ public:
 
 	void v_print()
 	{
-		cout << "{";
+		cout << "\n" << "{";
 		for (int i = 0; i < size - 1; i++)
 		{
 			cout << mas[i] << ";";
 		}
-		cout << mas[size - 1] << "}";
+		cout << mas[size - 1] << "}" << "\n";
 	}
 
 	T& operator[](int i)

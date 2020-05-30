@@ -23,6 +23,7 @@ int main()
 	cout << "Solution vector:" << endl;
 	sol.v_print();
 
+	slae.Verification();
 
 	system("pause");
 	//int a;

@@ -176,6 +176,20 @@ public:
 		return Vector<T>(this->size, sol);
 	}
 
+	void Verification()
+	{
+		T* Ver = new T[this->size];
 
+		cout << "\nChecking values: " << "\n" <<endl;
+		for (int i = 0; i < this->size; i++)
+		{
+			for (int j = 0; j < this->size; j++)
+			{
+				Ver[i] += this->mas[i][j] * el[j];
+			}
+			cout << el[this->size - i - 1] << "\n" << endl;;
+		}
+		delete[]Ver;
+	}
 
 };
