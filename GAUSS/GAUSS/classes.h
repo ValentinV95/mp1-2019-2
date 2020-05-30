@@ -170,6 +170,11 @@ public:
 	}
 	Vector <T> gauss()
 	{
+		for (int i = 0; i < this->isize; i++)
+		{
+			cout << "Vvedite " << i << " pravoe znachenie" << endl;
+			cin >> p[i];
+		}
 		printM();
 		MATRIX<double> cop(this->isize);
 		for (int i = 0; i < this->isize; i++) {

@@ -11,8 +11,4 @@ int main()
     cout << "pervonachalnaya matrica" << endl;
     m.printM();
     mVector = m.gauss();
-    cout << "Treugolnaya matrica:" << endl;
-    m.printM();
-    cout << "Recheniye sistemi:" << endl;
-    mVector.printV();
 }
