@@ -20,9 +20,9 @@ public:
 	Vector(int _SIZE, T* value)
 	{
 		SIZE = _SIZE;
-		ptrVector = new T[SIZE];
+		ptrVector = new T[_SIZE];
 
-		for (int i = 0; i < SIZE; i++)
+		for (int i = 0; i < _SIZE; i++)
 		{
 			ptrVector[i] = value[i];
 		}
@@ -31,9 +31,9 @@ public:
 	Vector(int _SIZE, T value = T())
 	{
 		SIZE = _SIZE;
-		ptrVector = new T[SIZE];
+		ptrVector = new T[_SIZE];
 
-		for (int i = 0; i < SIZE; i++)
+		for (int i = 0; i < _SIZE; i++)
 		{
 			ptrVector[i] = value;
 		}
@@ -65,6 +65,7 @@ public:
 	Vector& operator = (const Vector& other)
 	{
 		delete[]this->ptrVector;
+		this->SIZE = other.SIZE;
 		this->ptrVector = new T[other.SIZE];
 
 		for (int i = 0; i < other.SIZE; i++)
@@ -86,3 +87,4 @@ protected:
 	T* ptrVector;
 	int SIZE;
 };
+
