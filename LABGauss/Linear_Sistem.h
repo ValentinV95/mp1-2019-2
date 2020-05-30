@@ -19,12 +19,13 @@ public:
 			ptr[i] = _ptr;
 		}
 	}
+
 	~Linear_System()
 	{
 		delete[]ptr;
 	}
 
-	void printMatrix()
+	void printMatrix(T* ptr)
 	{
 		for (int i = 0; i < this->SIZE; i++)
 		{
@@ -38,7 +39,7 @@ public:
 		cout << endl;
 	}
 
-	void Fill()
+	void FillMatrix()
 	{
 		for (int i = 0; i < this->SIZE; i++)
 		{
@@ -48,12 +49,8 @@ public:
 				cin >> this->ptrVector[i][j];
 			}
 		}
-		for (int i = 0; i < this->SIZE; i++)
-		{
-			cout << "Enter " << i + 1 << " right values" << endl;
-			cin >> ptr[i];
-		}
 	}
+	
 
 	void minus(int val1, int val2, T* ptr, int index)
 	{
@@ -91,8 +88,9 @@ public:
 		}
 	}
 
-	Vector <T> Gauss()
+	Vector <T> Gauss(T* ptr)
 	{
+	
 		for (int j = 0; j < this->SIZE; j++)
 		{
 			int i = 0;
@@ -156,9 +154,10 @@ public:
 			result[i] = (ptr[i] - tmp) / this->ptrVector[i][i];
 		}
 		return Vector<T>(this->SIZE, result);
+		
 	}
-
-	void Check()
+	
+	void Check(T* ptr)
 	{
 		T* Check = new T[this->SIZE];
 		
@@ -171,6 +170,7 @@ public:
 			}
 			cout << ptr[this->SIZE-i-1] << "\t";
 		}
+		cout << endl << endl;
 		delete[]Check;
 	}
 
