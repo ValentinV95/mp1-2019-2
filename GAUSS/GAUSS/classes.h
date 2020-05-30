@@ -171,7 +171,7 @@ public:
 	Vector <T> gauss()
 	{
 		printM();
-		slau<double> cop(this->isize);
+		MATRIX<double> cop(this->isize);
 		for (int i = 0; i < this->isize; i++) {
 			for (int j = 0; j < this->isize; j++) {
 				cop[j][i] = this->pVector[j][i];
