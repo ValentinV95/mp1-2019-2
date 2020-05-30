@@ -5,48 +5,51 @@
 
 using namespace std;
 
-int SIZE;
+int main()
+{
+	int SIZE;
 	cout << "Gauss method of solving systems of linear equations." << endl;
 	cout << "Enter vector size: " << endl;
 	cin >> SIZE;
+	
 
-	Vector <double> matrixVector(SIZE);
 	Linear_System<double>matrix(SIZE);
-
+	Vector <double> matrixVector(SIZE);
+	
+	double* ptr = new double[SIZE];
+	
 	matrix.FillMatrix();
 	
-	matrix.FillRight();
-	cout << "Initial Matrix: " << endl;
-	matrix.printMatrix();
-
-	matrixVector = matrix.Gauss();
-	cout << "Triangular Matrix: " << endl;
-	matrix.printMatrix();
-	cout << "System solution: " << endl;
-	matrixVector.printVector();
-	matrix.Check();
 	int raz;
-	cout << "Matriza tazhe, right chast' drygaya!" << endl;
-	cout << "Vvedite how many raz right chast' will be drygoy: ";
+	cout << "Enter how many raz you will enter the right part: ";
 	cin >> raz;
 	cout << endl;
-	for (int i = 0; i < raz; i++)
-	{
-		cout << "New right values: " << endl;
-		matrix.FillRight();
-		cout << "Initial Matrix: " << endl;
-		matrix.printMatrix();
 
-		matrixVector = matrix.Gauss();
+	for (int n = 0; n < raz; n++)
+	{
+
+	
+
+		for (int i = 0; i < SIZE; i++)
+		{
+			cout << "Enter " << i + 1 << " right values" << endl;
+			cin >> ptr[i];
+		}
+
+
+		cout << "Initial Matrix: " << endl;
+		matrix.printMatrix(ptr);
+
+		matrixVector = matrix.Gauss(ptr);
 		cout << "Triangular Matrix: " << endl;
-		matrix.printMatrix();
+		matrix.printMatrix(ptr);
 
 		cout << "System solution: " << endl;
 		matrixVector.printVector();
-		matrix.Check();
+
+		matrix.Check(ptr);
+		
 	}
-
 	
-
+		
 }
-
