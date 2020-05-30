@@ -47,8 +47,11 @@ int main()
 	}
 	else
 	{
-		delete[] rv;
-		exit(4);
+		if(c==0)
+		{
+			delete[] rv;
+			exit(4);
+		}
 	}
 
 }
