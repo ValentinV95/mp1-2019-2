@@ -1,33 +1,43 @@
 #pragma once
-#include "matrix.h"
+#include "Matrix.h"
 #include <iostream>
-#include "math.h"
 
 using namespace std;
 
 template<class T>
-class SLAU : public Matrix<T>                   //РЅР°СЃР»РµРґСѓРµС‚ РјР°С‚СЂРёС†Сѓ
+class SLAU : public Matrix<T>
 {
 public:
-    SLAU(int n) : Matrix<T>::Matrix(n) {}
+	SLAU(int n) : Matrix<T>::Matrix(n) {}
 
-    Vector<double>* Gausse(Vector<T> y);
+	Vector<double>* Gausse(Vector<T> y);
 
 };
 
 template<class T>
-inline Vector<double>* SLAU<T>::Gausse(Vector<T> y) //РјРµС‚РѕРґ РіР°СѓСЃ РїРµСЂРµРґР°РµРј РєР°Рє РїР°СЂР°РјРµС‚СЂ РїСЂР°РІСѓСЋ                                                       С‡Р°СЃС‚СЊ
+inline Vector<double>* SLAU<T>::Gausse(Vector<T> y)
 {
-    Vector< Vector<T> > a = this[0];
-    
+	Vector< Vector<T> > b = this[0];
+    Vector< Vector<T> > a;// = b;
+    for (int i = 0; i < b.Size(); ++i)
+    {
+        Vector<T> tmp;
+        for (int j = 0; j < b.Size(); ++j)
+        {
+            tmp.push_back(b[i][j]);
+        }
+        a.push_back(tmp);
+    }
+
     Vector<double>* x = new Vector<double>(a.Size() , 0);
     int k, index;
-    const double eps = 0.00001;                             // С‚РѕС‡РЅРѕСЃС‚СЊ
+    const double eps = 0.00001;  // точность
     int n = a.Size();
     double max;
     k = 0;
     while (k < n)
-    {                                                      // РїРѕРёСЃРє СЃС‚СЂРѕРєРё СЃ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј a[i][k]
+    {
+        // Поиск строки с максимальным a[i][k]
         max = abs(a[k][k]);
         index = k;
         for (int i = k + 1; i < n; i++)
@@ -38,10 +48,12 @@ inline Vector<double>* SLAU<T>::Gausse(Vector<T> y) //РјРµС‚РѕРґ РіР°СѓСЃ РїРµСЂ
                 index = i;
             }
         }
-        if (max < eps)                      // РїРµСЂРµСЃС‚Р°РЅРѕРІРєР° СЃС‚СЂРѕРє
+        // Перестановка строк
+        if (max < eps)
         {
-            cout << "СЂРµС€РµРЅРёРµ РЅРµРІРѕР·РјРѕР¶РЅРѕ РёР·-Р·Р° РЅСѓР»РµРІРѕРіРѕ СЃС‚РѕР»Р±С†Р° ";   // РЅРµС‚ РЅСѓР»РµРІС‹С… РґРёР°РіРѕРЅР°Р»СЊРЅС‹С…
-            cout << index << " РјР°С‚СЂРёС†С‹ A" << endl;                  //СЌР»РµРјРµРЅС‚РѕРІ
+            // нет ненулевых диагональных элементов
+            cout << "Решение получить невозможно из-за нулевого столбца ";
+            cout << index << " матрицы A" << endl;
             return 0;
         }
 
@@ -52,22 +64,22 @@ inline Vector<double>* SLAU<T>::Gausse(Vector<T> y) //РјРµС‚РѕРґ РіР°СѓСЃ РїРµСЂ
             a[index][j] = temp;
         }
 
-                                                    // SwapRow(index, k, &a);
+       // SwapRow(index, k, &a);
 
         double temp = y[k];
         y[k] = y[index];
         y[index] = temp;
         
 
-                                                        // РЅРѕСЂРјР°Р»РёР·Р°С†РёСЏ СѓСЂР°РІРЅРµРЅРёР№
+        // Нормализация уравнений
         for (int i = k; i < n; i++)
         {
             double temp = a[i][k];
-            if (abs(temp) < eps) continue;              // РґР»СЏ РЅСѓР»РµРІРѕРіРѕ РєРѕСЌС„С„РёС†РёРµРЅС‚Р° РїСЂРѕРїСѓСЃС‚РёС‚СЊ
+            if (abs(temp) < eps) continue; // для нулевого коэффициента пропустить
             for (int j = 0; j < n; j++)
                 a[i][j] = a[i][j] / temp;
             y[i] = y[i] / temp;
-            if (i == k)  continue;                      // РЅРµ РІС‹С‡РёС‚Р°С‚СЊ СѓСЂР°РІРЅРµРЅРёРµ СЃР°РјРѕ РёР· СЃРµР±СЏ
+            if (i == k)  continue; // уравнение не вычитать само из себя
             for (int j = 0; j < n; j++)
                 a[i][j] = a[i][j] - a[k][j];
             y[i] = y[i] - y[k];
@@ -75,7 +87,8 @@ inline Vector<double>* SLAU<T>::Gausse(Vector<T> y) //РјРµС‚РѕРґ РіР°СѓСЃ РїРµСЂ
 
         k++;
     }
-    for (k = n - 1; k >= 0; k--)                    // РѕР±СЂР°С‚РЅР°СЏ РїРѕРґСЃС‚Р°РЅРѕРІРєР°
+    // обратная подстановка
+    for (k = n - 1; k >= 0; k--)
     {
         (*x)[k] = y[k];
         for (int i = 0; i < k; i++)
@@ -84,4 +97,3 @@ inline Vector<double>* SLAU<T>::Gausse(Vector<T> y) //РјРµС‚РѕРґ РіР°СѓСЃ РїРµСЂ
     return x;
 
 }
-
