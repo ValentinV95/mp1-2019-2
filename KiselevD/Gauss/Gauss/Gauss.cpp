@@ -12,12 +12,8 @@ int main()
     cin >> size;
     SLAE<double>m(size);
     Vector<double>sol(size);
-    m.fill();
-    cout << "Original matrix:" << endl;
-    m.s_print();
-    sol = m.gauss();
-    cout << "Triangular matrix:" << endl;
-    m.s_print();
-    cout << "Solution vector:" << endl;
+    Vector<double>rv(size);
+    m.fill(rv);
+    sol = m.gauss(rv);
     sol.v_print();
 }

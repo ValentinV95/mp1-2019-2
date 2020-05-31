@@ -30,7 +30,6 @@ public:
 		{
 			this->m_x[i] = other.m_x[i];
 		}
-		return *this;
 	}
 	~Vector()
 	{
@@ -44,6 +43,13 @@ public:
 			cout << m_x[i] << ";";
 		}
 		cout << m_x[size - 1] << ")";
+	}
+	void v_fill() {
+		cout << "Input vector values:" << endl;
+		for (int i = 0; i < size; i++)
+		{
+			cin >> m_x[i];
+		}
 	}
 
 	T& operator[](int i) {
@@ -60,8 +66,6 @@ public:
 		}
 		return *this;
 	}
-
-
 protected:
 	T* m_x;
 	int size;

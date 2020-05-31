@@ -4,17 +4,8 @@ template < typename T >
 class SLAE : public Matrix<T>
 {
 public:
-	SLAE(int n, T _rv = T()) : Matrix <T>(n) {
-		rv = new T[n];
-		for (int i = 0; i < n; i++)
-		{
-			rv[i] = _rv;
-		}
-	}
-	~SLAE() {
-		delete[]rv;
-	}
-	void fill() {
+	SLAE(int n) : Matrix <T>(n) {}
+	void fill(Vector <T> v) {
 		for (int i = 0; i < this->size; i++)
 		{
 			for (int j = 0; j < this->size; j++)
@@ -23,30 +14,26 @@ public:
 				cin >> this->m_x[i][j];
 			}
 		}
-		for (int i = 0; i < this->size; i++)
-		{
-			cout << "Input " << i << " right value" << endl;
-			cin >> rv[i];
-		}
+		v.v_fill();
 	}
-	void s_print() {
+	void s_print(Vector <T> v) {
 		for (int i = 0; i < this->size; i++)
 		{
 			for (int j = 0; j < this->size; j++)
 			{
 				cout << this->m_x[i][j] << "\t";
 			}
-			cout << "| " << rv[i] << endl;
+			cout << "| " << v.m_x[i] << endl;
 		}
 		cout << endl;
 	}
-	void swap(int str1, int str2) {
+	void swap(int str1, int str2, Vector <T> v) {
 		if (str1 < this->size && str2 < this->size)
 		{
 			T r_tmp;
-			r_tmp = rv[str1];
-			rv[str1] = rv[str2];
-			rv[str2] = r_tmp;
+			r_tmp = v.m_x[str1];
+			v.m_x[str1] = v.m_x[str2];
+			v.m_x[str2] = r_tmp;
 			T* tmp = new T[this->size];
 			for (int i = 0; i < this->size; i++)
 			{
@@ -62,7 +49,7 @@ public:
 			exit(1);
 		}
 	}
-	Vector <T> gauss() {
+	Vector <T> gauss(Vector <T> v) {
 		T error = 0.0000001; 
 		//making it look triangular
 		for (int j = 0; j < this->size; j++)
@@ -77,7 +64,7 @@ public:
 					max_abs_index = i+j;
 				}
 			}
-			swap(j, max_abs_index);
+			swap(j, max_abs_index, v);
 			for (int l = j + 1; l < this->size; l++)
 			{
 				if (this->m_x[j][j] != 0)
@@ -87,7 +74,7 @@ public:
 					{
 						this->m_x[l][k] += this->m_x[j][k] * rate;
 					}
-					rv[l] += rv[j] * rate;
+					v.m_x[l] += v.m_x[j] * rate;
 				}
 				else
 				{
@@ -106,9 +93,9 @@ public:
 					this->m_x[i][j] = 0;
 				}
 			}
-			if (abs(rv[i]) < error)
+			if (abs(v.m_x[i]) < error)
 			{
-				rv[i] = 0;
+				v.m_x[i] = 0;
 			}
 		}
 		//checking for missing solutions
@@ -119,12 +106,12 @@ public:
 			{
 				sum += abs<T>(this->m_x[i][j]);
 			}
-			if ((sum == 0) && (rv[i] != 0))
+			if ((sum == 0) && (v.m_x[i] != 0))
 			{
 				cout << "No solution: 0 * x = C, C!=0" << endl;
 				exit(2);
 			}
-			if ((sum == 0) && (rv[i] == 0))
+			if ((sum == 0) && (v.m_x[i] == 0))
 			{
 				cout << "Cant solve: the equation depends on the variable" << endl;
 				exit(3);
@@ -137,11 +124,11 @@ public:
 			for (int j = i + 1; j < this->size; j++) {
 				tmp += this->m_x[i][j] * sol[j];
 			}
-			sol[i] = (rv[i] - tmp) / this->m_x[i][i];
+			sol[i] = (v.m_x[i] - tmp) / this->m_x[i][i];
 		}
 		return Vector<T>(this->size, sol);
 	}
 private:
-	T* rv; //right_values
+
 };
 
