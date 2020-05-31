@@ -1,0 +1,11 @@
+﻿  labaff.cpp
+c:\users\user\source\repos\labaff\labaff\labaff.cpp(18): warning C4101: choose: неиспользованная локальная переменная
+c:\users\user\source\repos\labaff\labaff\gauss.h(79): warning C4552: "+": результат выражения не используется
+  c:\users\user\source\repos\labaff\labaff\gauss.h(72): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\user\source\repos\labaff\labaff\labaff.cpp(28): note: выполняется компиляция ссылки на экземпляр шаблон функции "Vector<T> Gauss<T>::gauss(T *)"
+          with
+          [
+              T=double
+          ]
+  c:\users\user\source\repos\labaff\labaff\labaff.cpp(12): note: выполняется компиляция ссылки на экземпляр шаблон класс "Gauss<double>"
+  labaff.vcxproj -> C:\Users\user\source\repos\labaff\Debug\labaff.exe
