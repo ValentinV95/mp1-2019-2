@@ -1,0 +1,6 @@
+﻿  LABGauss.cpp
+C:\Users\Тимаков\source\repos\LABGauss\Linear_Sistem.h(101,15): warning C4552: "+": результат выражения не используется
+C:\Users\Тимаков\source\repos\LABGauss\Linear_Sistem.h(95): message : во время компиляции функции-члена класс шаблон "Vector<double> Linear_System<double>::Gauss(void)"
+C:\Users\Тимаков\source\repos\LABGauss\LABGauss.cpp(22): message : выполняется компиляция ссылки на экземпляр шаблон функции "Vector<double> Linear_System<double>::Gauss(void)"
+C:\Users\Тимаков\source\repos\LABGauss\LABGauss.cpp(16): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "Linear_System<double>"
+  LABGauss.vcxproj -> C:\Users\Тимаков\source\repos\LABGauss\Debug\LABGauss.exe
