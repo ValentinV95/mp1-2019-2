@@ -25,7 +25,7 @@ public:
 		delete[]el;
 	}
 
-	void s_print()
+	void s_print(T *el)
 	{
 		for (int i = 0; i < this->size; i++)
 		{
@@ -54,11 +54,6 @@ public:
 					cin >> this->mas[i][j];
 				}
 			}
-			for (int i = 0; i < this->size; i++)
-			{
-				cout << "Input" << " free member [" << i << "]" << endl;
-				cin >> el[i];
-			}
 			break;
 		case 2:
 			for (int i = 0; i < this->size; i++)
@@ -67,7 +62,6 @@ public:
 				{
 					this->mas[i][j] = (double)rand() / (double)RAND_MAX * (max - min) + min;
 				}
-				el[i] = (double)rand() / (double)RAND_MAX * (max - min) + min;
 			}
 			break;
 		default:
@@ -79,13 +73,12 @@ public:
 				{
 					this->mas[i][j] = (double)rand() / (double)RAND_MAX * (max - min) + min;
 				}
-				el[i] = (double)rand() / (double)RAND_MAX * (max - min) + min;
 			}
 			break;
 		}
 	}
 
-	void swap(int str1, int str2)
+	void swap(int str1, int str2, T *el)
 	{
 		T _tmp;
 		_tmp = el[str1];
@@ -93,7 +86,7 @@ public:
 		el[str2] = _tmp;
 	}
 
-	Vector <T> gauss()
+	Vector <T> gauss(T *el)
 	{
 		T prec = 0.001;
 		for (int j = 0; j < this->size; j++)
@@ -108,7 +101,7 @@ public:
 					max_abs_index = i + j;
 				}
 			}
-			swap(j, max_abs_index);
+			swap(j, max_abs_index, el);
 			for (int l = j + 1; l < this->size; l++)
 			{
 				if (this->mas[j][j] != 0)
@@ -176,7 +169,7 @@ public:
 		return Vector<T>(this->size, sol);
 	}
 
-	void Verification()
+	void Verification(T *el)
 	{
 		T* Ver = new T[this->size];
 
