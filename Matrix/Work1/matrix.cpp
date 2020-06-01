@@ -27,9 +27,9 @@ int main() {
 	k.gauss(arr);
 
 
-	double* arr2 = new double[size];
-	inputRV(arr2, size);
-	k.gauss(arr2);
+	//double* arr2 = new double[size];
+	//inputRV(arr2, size);
+	//k.gauss(arr2);
 }
 
 

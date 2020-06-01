@@ -59,9 +59,17 @@ public:
 	}
 
 	void print() {
+		cout << '(';
 		for (int i = 0; i < this->size; i++) {
-			cout << this->m_x[i] << ' ';
+			if (i != 0) {
+				cout << ' ';
+			}
+			cout << this->m_x[i];
+			if (i != this->size - 1) {
+				cout << ';';
+			}
 		}
+		cout << ')';
 		cout << endl;
 	}
 
