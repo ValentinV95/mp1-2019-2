@@ -26,7 +26,7 @@ public:
 		print(rv);
 
 		//saving the original matrix
-		SoHAE<double> oM(this->size);
+		Matrix<T> oM(this->size);
 		for (int i = 0; i < this->size; i++) {
 			for (int j = 0; j < this->size; j++) {
 				oM[j][i] = this->m_x[j][i];
