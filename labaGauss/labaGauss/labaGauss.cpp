@@ -2,7 +2,7 @@
 //
 
 #define INPUT = true
-//#undef INPUT
+#undef INPUT
 
 #include "dop.h"
 #include "slau.h"
@@ -19,12 +19,11 @@ int main()
 	std::cout << "SizeY: ";
 	std::cin >> sizeY;
 #else
-	sizeX = 4;
-	sizeY = 4;
+	sizeX = 3;
+	sizeY = 3;
 #endif
 
 	slau _matrix = slau(sizeX, sizeY);
-	slau _matrixx = slau(sizeX, sizeY);
 
 #if defined(INPUT)
 	for (int y = 0; y < sizeY; y++)
@@ -33,30 +32,22 @@ int main()
 		{
 			std::cout << "[" << x << "," << y << "] ";
 			std::cin >> _matrix[matrix_index(x, y)];
-			_matrixx[matrix_index(x, y)] = _matrix[matrix_index(x, y)];
 		}
 	}
 #else
 
 	_matrix[matrix_index(0, 0)] = 1;
-	_matrix[matrix_index(1, 0)] = 2;
-	_matrix[matrix_index(2, 0)] = 0;
-	_matrix[matrix_index(3, 0)] = 0;
+	_matrix[matrix_index(1, 0)] = 3;
+	_matrix[matrix_index(2, 0)] = 6;
 
 	_matrix[matrix_index(0, 1)] = 2;
-	_matrix[matrix_index(1, 1)] = 4;
-	_matrix[matrix_index(2, 1)] = 0;
-	_matrix[matrix_index(3, 1)] = -3;
+	_matrix[matrix_index(1, 1)] = 7;
+	_matrix[matrix_index(2, 1)] = 1;
 
-	_matrix[matrix_index(0, 2)] = -3;
-	_matrix[matrix_index(1, 2)] = -4;
-	_matrix[matrix_index(2, 2)] = 2;
-	_matrix[matrix_index(3, 2)] = 3;
+	_matrix[matrix_index(0, 2)] = 4;
+	_matrix[matrix_index(1, 2)] = 1;
+	_matrix[matrix_index(2, 2)] = 5;
 
-	_matrix[matrix_index(0, 3)] = -1;
-	_matrix[matrix_index(1, 3)] = 0;
-	_matrix[matrix_index(2, 3)] = 3;
-	_matrix[matrix_index(3, 3)] = 6;
 
 #endif
 
@@ -75,20 +66,19 @@ int main()
 		std::cin >> ans[y];
 	}
 #else
-	ans[0] = 5;
+	ans[0] = 8;
 	ans[1] = 6;
-	ans[2] = -10;
-	ans[3] = 3;
+	ans[2] = 2;
 
 #endif
 
-	vector<double> vals = _matrixx.gauss(ans);
+	vector<double> vals = _matrix.gauss(ans);
 
 	std::cout << "-----" << std::endl;
 	for (int i = 0; i < vals.size; i++) std::cout << "[" << i << "] " << vals[i];
 	std::cout << std::endl;
+	
 	int k = 1;
-
 	while (k != 0)
 	{
 		std::cout << "do you want to solve this matrix with a different right column? " << std::endl << "1 - yes" << std::endl << "2 - no" << std::endl;

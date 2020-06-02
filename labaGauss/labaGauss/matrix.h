@@ -18,6 +18,18 @@ public:
 	{
 		return this->size;
 	}
+
+	T getItem(matrix_index index)
+	{
+		vector<T>& _y = this->arr[index.y];
+		T& _x = _y.operator[](index.x);
+		return _x;
+	}
+	void setItem(matrix_index index, T value)
+	{
+		vector<T>& _y = this->arr[index.y];
+		_y.operator[](index.x) = value;
+	}
 private:
 	const int size_x;
 };
