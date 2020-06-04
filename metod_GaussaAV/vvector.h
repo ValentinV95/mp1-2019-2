@@ -1,5 +1,5 @@
 #pragma once
-struct element
+struct element // структура, которая возвращает конкретный элемент матрицы
 {
 	int x;
 	int y;
@@ -9,13 +9,13 @@ struct element
 		this->y = y;
 	}
 };
-template<typename T> static void swap(T* a, T* b)
+template<typename T> static void swap(T* a, T* b) // поменять местами
 {
 	T tmp = *a;
 	*a = *b;
 	*b = tmp;
 }
-template<typename T> class vvector
+template<typename T> class vvector //класс вектор
 {
 public:
 	vvector() : vvector(0) { }
