@@ -30,21 +30,6 @@ public:
 		this->arr = arr;
 		this->size = size;
 	}
-	T& operator +(vvector a)
-	{
-		for (int i = 0; i < size; i++)
-			arr[i] += a[i];
-	}
-	T& operator -(vvector a)
-	{
-		for (int i = 0; i < size; i++)
-			arr[i] -= a[i];
-	}
-	T& operator *(int a)
-	{
-		for (int i = 0; i < size; i++)
-			arr[i] = arr[i] * a;
-	}
 	T& operator[](int index)
 	{
 		return arr[index];
