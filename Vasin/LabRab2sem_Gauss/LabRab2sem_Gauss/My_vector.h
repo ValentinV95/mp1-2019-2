@@ -46,14 +46,9 @@ public:
 		delete[]mas;
 	}
 
-	void v_print() // вывод на экран значений вектора
+	int GetSize() // получаем размер вектора
 	{
-		cout << "{";
-		for (int i = 0; i < size - 1; i++)
-		{
-			cout << mas[i] << ";";
-		}
-		cout << mas[size - 1] << "}";
+		return size;
 	}
 
 	T& operator[](int i) // перегрузка оператора[]
